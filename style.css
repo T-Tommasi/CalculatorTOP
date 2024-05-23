@@ -1,9 +1,11 @@
 * {
-    border: 1px red solid;
 }
 
 body {
     margin: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #background {
@@ -11,6 +13,12 @@ body {
     border-radius: 6px;
     border: black 1px solid;
     box-shadow: 1px black;
+    width: 55vw;
+}
+
+.flexContainer #keyboardNumber, .flexContainer #keyboardSigns{
+    flex-wrap: wrap;
+    flex-basis: 20%;
 }
 
 #screen {
@@ -18,13 +26,9 @@ body {
     color: white;
     text-align: right;
     margin: 1%;
-    height: 25em;
+    height: 45vh;
     border-radius: 0px 10px;
     border: 1px solid lightgrey;
-}
-
-.flexContainer {
-    display: flex;
 }
 
 .column {
@@ -34,17 +38,32 @@ body {
 #keyboardNumber, #keyboardSigns, #specialUnits {
     align-content: center;
     text-align: center;
-    justify-content: space-evenly;
-    gap: 1em;
-    flex-wrap: wrap;
+    padding: 1vh;
 }
 
 #keyboardNumber button{
     width: 5em;
     height: 5em;
+    border-radius: 100%;
+    background-color: darkslategrey;
+
 }
+    #keyboardNumber div{
+        display: flex;
+        justify-content: space-around;
+        margin: 1% 0;
+    }
 
 #keyboardSigns button {
     width: 10em;
     height: 5em;
+    border-radius: 75%;
+    background-color: darkslategrey;
+}
+
+#specialUnits button {
+    width: 18em;
+    height: 5em;
+    background-color: darkslategrey;
+    border-radius: 5px;
 }
