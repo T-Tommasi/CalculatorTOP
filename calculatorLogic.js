@@ -7,16 +7,16 @@ let numberA = '';
 let numberB = '';
 
 //Get the various numerical buttons
-let buttonZero = document.getElementById('#number0');
-let buttonOne = document.getElementById('#number1');
-let buttonTwo = document.getElementById('#number2');
-let buttonThree = document.getElementById('#number3');
-let buttonFour = document.getElementById('#number4');
-let buttonFive = document.getElementById('#number5');
-let buttonSix = document.getElementById('#number6');
-let buttonSeven = document.getElementById('#number7');
-let buttonEight = document.getElementById('#number8');
-let buttonNine = document.getElementById('#number9');
+let buttonZero = document.getElementById('#button0');
+let buttonOne = document.getElementById('#button1');
+let buttonTwo = document.getElementById('#button2');
+let buttonThree = document.getElementById('#button3');
+let buttonFour = document.getElementById('#button4');
+let buttonFive = document.getElementById('#button5');
+let buttonSix = document.getElementById('#button6');
+let buttonSeven = document.getElementById('#button7');
+let buttonEight = document.getElementById('#button8');
+let buttonNine = document.getElementById('#button9');
 
 //Add eventListener for click on all the elements before
 buttonZero.addEventListener('click', function () {
@@ -73,5 +73,6 @@ function division(firstNumber,secondNumber){
 //the previous one without cancelling it
 let screen = [];
 function addNumberToScreen (number) {
+    console.log(screen);
     return screen.push(number)
 }
