@@ -6,7 +6,7 @@ const divisionSign = '/';
 let numberA = '';
 let numberB = '';
 
-//Add listeners for all the various keys and for keystrokes
+//Get the various numerical buttons
 let 0 = document.getElementById('#number0');
 let 1 = document.getElementById('#number1');
 let 2 = document.getElementById('#number2');
@@ -18,7 +18,6 @@ let 7 = document.getElementById('#number7');
 let 8 = document.getElementById('#number8');
 let 9 = document.getElementById('#number9');
 
-let minusButton = document.getElementById('#minus')
 
 //Create a function for each of the basic mathematical operations
 
@@ -38,4 +37,10 @@ function division(firstNumber,secondNumber){
     return firstNumber*secondNumber
 }
 
-//
+//function for managing the screen
+//pseudo-code: The screen should show any number that was pressed by adding the pressed number after
+//the previous one without cancelling it
+let screen = [];
+function addNumberToScreen (number) {
+    return screen.push(number)
+}
