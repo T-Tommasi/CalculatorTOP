@@ -1,0 +1,50 @@
+* {
+    border: 1px red solid;
+}
+
+body {
+    margin: 1%;
+}
+
+#background {
+    background-color: grey;
+    border-radius: 6px;
+    border: black 1px solid;
+    box-shadow: 1px black;
+}
+
+#screen {
+    background-color: black;
+    color: white;
+    text-align: right;
+    margin: 1%;
+    height: 25em;
+    border-radius: 0px 10px;
+    border: 1px solid lightgrey;
+}
+
+.flexContainer {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+#keyboardNumber, #keyboardSigns, #specialUnits {
+    align-content: center;
+    text-align: center;
+    justify-content: space-evenly;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+
+#keyboardNumber button{
+    width: 5em;
+    height: 5em;
+}
+
+#keyboardSigns button {
+    width: 10em;
+    height: 5em;
+}
