@@ -3,32 +3,23 @@ let memory = ''
 let usedOperator = ''
 
 //Fix in place the numbers already pressed when one of the operators is started
-MINUS.addEventListener('click',function () {
-    pushToMemory(memoryA);
-    usedOperator = '-';
-    return;
-});
-PLUS.addEventListener('click',function () {
-    pushToMemory(memoryA);
-    usedOperator = '+';
-    return;
-});
-MULTIPLY.addEventListener('click',function () {
-    pushToMemory(memoryA);
-    usedOperator = '*';
-    return;
-});
-DIVISION.addEventListener('click',function () {
-    pushToMemory(memoryA);
-    usedOperator = '/';
-    return;
-});
+function operatorListener (button, operator) {
+    button.addEventListener('click', function () {
+        pushToMemory(memoryA);
+        usedOperator = operator
+    })
+};
 
-function pushToMemory (array) {
-    memory = array.toString();
-    memoryA = '';
+operatorListener(PLUS, '+');
+operatorListener(MINUS, '-');
+operatorListener(DIVISION, '/');
+operatorListener(MULTIPLY, '*');
+
+function pushToMemory (numbers) {
+    memory = numbers.toString();
+    numbers = '';
     return;
-}
+};
 //Get the various numerical buttons
 const buttonZero = document.getElementById('#button0');
 const buttonOne = document.getElementById('#button1');
@@ -49,36 +40,22 @@ const DIVISION = document.getElementById('#divided');
 const MULTIPLY = document.getElementById('#multiplication');
 
 //Add eventListener for click on all the elements before
-buttonZero.addEventListener('click', function () {
-    addNumberToMemory(0);
-});
-buttonOne.addEventListener('click', function () {
-    addNumberToMemory(1);
-});
-buttonTwo.addEventListener('click', function () {
-    addNumberToMemory(2);
-});
-buttonThree.addEventListener('click', function () {
-    addNumberToMemory(3);
-});
-buttonFour.addEventListener('click', function () {
-    addNumberToMemory(4);
-});
-buttonFive.addEventListener('click', function () {
-    addNumberToMemory(5);
-});
-buttonSix.addEventListener('click', function () {
-    addNumberToMemory(6);
-});
-buttonSeven.addEventListener('click', function () {
-    addNumberToMemory(7);
-});
-buttonEight.addEventListener('click', function () {
-    addNumberToMemory(8);
-});
-buttonNine.addEventListener('click', function () {
-    addNumberToMemory(9);
-});
+function numberListener(numberButton, number) {
+    number.addEventListener('click', function () {
+        addNumberToMemory(number);
+    })
+};
+
+numberListener(buttonZero, 0);
+numberListener(buttonOne, 1);
+numberListener(buttonTwo, 2);
+numberListener(buttonThree, 3);
+numberListener(buttonFour, 4);
+numberListener(buttonFive, 5);
+numberListener(buttonSix, 6);
+numberListener(buttonSeven, 7);
+numberListener(buttonEight, 8);
+numberListener(buttonNine, 9);
 
 //Create a function for each of the basic mathematical operations
 
