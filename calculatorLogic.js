@@ -20,34 +20,34 @@ let buttonNine = document.getElementById('#button9');
 
 //Add eventListener for click on all the elements before
 buttonZero.addEventListener('click', function () {
-    addNumberToScreen(0);
+    addNumberToMemory(0);
 });
 buttonOne.addEventListener('click', function () {
-    addNumberToScreen(1);
+    addNumberToMemory(1);
 });
 buttonTwo.addEventListener('click', function () {
-    addNumberToScreen(2);
+    addNumberToMemory(2);
 });
 buttonThree.addEventListener('click', function () {
-    addNumberToScreen(3);
+    addNumberToMemory(3);
 });
 buttonFour.addEventListener('click', function () {
-    addNumberToScreen(4);
+    addNumberToMemory(4);
 });
 buttonFive.addEventListener('click', function () {
-    addNumberToScreen(5);
+    addNumberToMemory(5);
 });
 buttonSix.addEventListener('click', function () {
-    addNumberToScreen(6);
+    addNumberToMemory(6);
 });
 buttonSeven.addEventListener('click', function () {
-    addNumberToScreen(7);
+    addNumberToMemory(7);
 });
 buttonEight.addEventListener('click', function () {
-    addNumberToScreen(8);
+    addNumberToMemory(8);
 });
 buttonNine.addEventListener('click', function () {
-    addNumberToScreen(9);
+    addNumberToMemory(9);
 });
 
 //Create a function for each of the basic mathematical operations
@@ -68,11 +68,11 @@ function division(firstNumber,secondNumber){
     return firstNumber*secondNumber
 }
 
-//function for managing the screen
+//function for managing and memorizing inserted numbers
 //pseudo-code: The screen should show any number that was pressed by adding the pressed number after
 //the previous one without cancelling it
-let screen = [];
-function addNumberToScreen (number) {
-    console.log(screen);
-    return screen.push(number)
+let memoryA = [];
+function addNumberToMemory (number) {
+    console.log(memoryA);
+    return memoryA.push(number);
 }
