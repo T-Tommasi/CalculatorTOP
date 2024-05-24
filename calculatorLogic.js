@@ -1,22 +1,21 @@
-//Variables for showing the results on the calculator
-const plus = '+';
-const minus = '-';
-const multiply = '*';
-const divisionSign = '/';
-let numberA = '';
-let numberB = '';
-
 //Get the various numerical buttons
-let buttonZero = document.getElementById('#button0');
-let buttonOne = document.getElementById('#button1');
-let buttonTwo = document.getElementById('#button2');
-let buttonThree = document.getElementById('#button3');
-let buttonFour = document.getElementById('#button4');
-let buttonFive = document.getElementById('#button5');
-let buttonSix = document.getElementById('#button6');
-let buttonSeven = document.getElementById('#button7');
-let buttonEight = document.getElementById('#button8');
-let buttonNine = document.getElementById('#button9');
+const buttonZero = document.getElementById('#button0');
+const buttonOne = document.getElementById('#button1');
+const buttonTwo = document.getElementById('#button2');
+const buttonThree = document.getElementById('#button3');
+const buttonFour = document.getElementById('#button4');
+const buttonFive = document.getElementById('#button5');
+const buttonSix = document.getElementById('#button6');
+const buttonSeven = document.getElementById('#button7');
+const buttonEight = document.getElementById('#button8');
+const buttonNine = document.getElementById('#button9');
+
+//Get the operators
+const EQUALS = document.getElementById('#equals');
+const MINUS = document.getElementById('#minus');
+const PLUS = document.getElementById('#plus');
+const DIVISION = document.getElementById('#divided');
+const MULTIPLY = document.getElementById('#multiplication');
 
 //Add eventListener for click on all the elements before
 buttonZero.addEventListener('click', function () {
