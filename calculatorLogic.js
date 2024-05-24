@@ -1,3 +1,34 @@
+//Global variables
+let memory = ''
+let usedOperator = ''
+
+//Fix in place the numbers already pressed when one of the operators is started
+MINUS.addEventListener('click',function () {
+    pushToMemory(memoryA);
+    usedOperator = '-';
+    return;
+});
+PLUS.addEventListener('click',function () {
+    pushToMemory(memoryA);
+    usedOperator = '+';
+    return;
+});
+MULTIPLY.addEventListener('click',function () {
+    pushToMemory(memoryA);
+    usedOperator = '*';
+    return;
+});
+DIVISION.addEventListener('click',function () {
+    pushToMemory(memoryA);
+    usedOperator = '/';
+    return;
+});
+
+function pushToMemory (array) {
+    memory = array.toString();
+    memoryA = '';
+    return;
+}
 //Get the various numerical buttons
 const buttonZero = document.getElementById('#button0');
 const buttonOne = document.getElementById('#button1');
