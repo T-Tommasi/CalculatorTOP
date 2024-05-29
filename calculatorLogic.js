@@ -19,6 +19,14 @@ const buttonSeven = document.querySelector('#button7');
 const buttonEight = document.querySelector('#button8');
 const buttonNine = document.querySelector('#button9');
 
+function checkButtons (query) {
+    console.log(query)
+}
+
+checkButtons(buttonZero);
+checkButtons(buttonOne);
+checkButtons(buttonThree);
+
 //Get the operators
 const EQUALS = document.querySelector('#equals');
 const MINUS = document.querySelector('#minus');
