@@ -66,15 +66,31 @@ function operatorListener (object, useddOperator) {
             operator = object.value;
             return
         } else if (useddOperator != '') {
-            
+            switch (useddOperator) {
+                case '+':
+                    sum(firstNumber, secondNumber)
+                    break;
+                case '-':
+                    minus(firstNumber, secondNumber)
+                    break;
+                case '*':
+                    multiply(firstNumber, secondNumber)
+                    break;
+                case '/':
+                    divide(firstNumber, secondNumber)
+                    break;
+                default:
+                    alert('invalid operator')
+            }
         }
     })
 }
 
 function result(firstNumber, secondNumber, operator){
-    if (operator == '+') {
+    if (operator == '+') {(
     }
 }
 
-//set up listeners for the number values
-NUMBERS.forEach(item => numberListener(item.origin, item.value));
+//set up listeners
+NUMBERS.forEach(item => numberListener(item.origin, item.value)); //Number listener
+OPERATORS.forEach(item => operatorListener(item.origin, item.value)); //Operators listener
