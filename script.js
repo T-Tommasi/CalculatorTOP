@@ -35,9 +35,9 @@ const SPECIALS = [
 
 function numberListener (object, number) {
     object.addEventListener('click', function () {
-        if (memory.operator == '') {
+        if (memory.operator.length === 0) {
             memory.firstNumber.push(number); //push the used number to memory
-        } else if (memory.operator != '') {
+        } else if (memory.operator.length != 0) {
             memory.secondNumber.push(number) //if there is an operator selected push to the second number
         } else {
             return alert('Critical memory error')
@@ -60,37 +60,42 @@ function divide (firstNumber, secondNumber) {
     return firstNumber / secondNumber; //Function for division
 };
 
-function operatorListener (object, useddOperator) {
-    object.addEventListener('click', function () {
-        if (useddOperator == '') {
-            operator = object.value;
-            return
-        } else if (useddOperator != '') {
-            switch (useddOperator) {
-                case '+':
-                    sum(firstNumber, secondNumber)
-                    break;
-                case '-':
-                    minus(firstNumber, secondNumber)
-                    break;
-                case '*':
-                    multiply(firstNumber, secondNumber)
-                    break;
-                case '/':
-                    divide(firstNumber, secondNumber)
-                    break;
-                default:
-                    alert('invalid operator')
+function operatorChecker (usedOperator) {
+    let result = '';
+        switch (usedOperator) {
+            case '+':
+                result = sum(memory.firstNumber.map(Number), memory.secondNumber.map(Number))
+                break;
+            case '-':
+                result = minus(memory.firstNumber.map(Number), memory.secondNumber.map(Number))
+                break;
+            case '*':
+                result = multiply(memory.firstNumber.map(Number), memory.secondNumber.map(Number))
+                break;
+            case '/':
+                result = divide(memory.firstNumber.map(Number), memory.secondNumber.map(Number))
+                break;
+            default:
+                alert('Digit a number to start calculating!')
             }
+    return result
+}
+
+function operatorListener (object) {
+    object.origin.addEventListener('click', function () {
+        if (memory.operator === '') {
+            memory.operator = object.value
+            return
+        } else if (memory.operator != '') {
+            console.log(operatorChecker(memory.operator));
+            memory.operator = '';
+            memory.firstNumber = [];
+            memory.secondNumber = [];
+            return
         }
     })
 }
 
-function result(firstNumber, secondNumber, operator){
-    if (operator == '+') {(
-    }
-}
-
 //set up listeners
 NUMBERS.forEach(item => numberListener(item.origin, item.value)); //Number listener
-OPERATORS.forEach(item => operatorListener(item.origin, item.value)); //Operators listener
+OPERATORS.forEach(item => operatorListener(item)); //Operators listener
