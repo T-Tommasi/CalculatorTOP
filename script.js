@@ -4,6 +4,7 @@ let memory = {
     secondNumber: [],
     operator: '',
 };
+ler result = ''
 
 //Recall the numbers and operators for further use down the line
 
@@ -35,20 +36,84 @@ const SPECIALS = [
 
 function sum (a, b) {
     let result = Number(a) + Number(b);
+    console.log(result);
     return result
 };
 
 function minus (a, b) {
     let result = Number(a) - Number(b);
+    console.log(result);
     return result
 };
 
 function multiply (a, b) {
     let result = Number(a) * Number(b);
+    console.log(result);
     return result
 };
 
 function division (a, b) {
     let result = Number(a) / Number(b);
+    console.log(result);
     return result
 };
+
+function numberListener (origin, number) {
+    origin.addEventListener('click', function () {
+        if (memory.operator.length == 0) {
+            memory.firstNumber.push(number);
+            return;
+        } else if (memory.operator == 1) {
+            memory.secondNumber.push(number);
+            return;
+        } else {
+            memory.thirdNumber.push(number);
+            return;
+        }
+    })
+}
+
+function valueIdentifier (operatorArray) {
+    switch(operatorArray) {
+        case '+':
+            if (result != 0) {
+                result += sum(memory.firstNumber,memory.secondNumber);
+            } else if (result == 0) {
+                result = sum(memory.firstNumber,memory.secondNumber);
+            }
+            break;
+        case '-':
+            if (result != 0) {
+                result -= minus(memory.firstNumber,memory.secondNumber);
+            } else {
+                result = minus(memory.firstNumber,memory.secondNumber);
+            };
+            break
+        case '*':
+            if (result != 0) {
+                result *= multiply(memory.firstNumber,memory.secondNumber);
+            } else {
+                result = multiply(memory.firstNumber,memory.secondNumber);
+            };
+            break;
+        case '/':
+            if (result != 0) {
+                result /= division(memory.firstNumber,memory.secondNumber);
+            } else {
+                result = division(memory.firstNumber,memory.secondNumber);
+            }
+        break;
+    }
+}
+
+function operatorListener (origin, operator) {
+    origin.addEventListener('click', function () {
+        if (memory.operator.length < 1) {
+            memory.operator.push(operator);
+            return
+        } else if (memory.operator.length >= 3) {
+            valueIdentifier(memory.operator[0])
+            return
+        }
+    })
+}
