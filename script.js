@@ -34,6 +34,8 @@ const SPECIALS = [
     {origin: document.querySelector('#double0'), value: '00'}
 ];
 
+//calculation functions
+
 function sum (a, b) {
     let result = Number(a) + Number(b);
     console.log(result);
@@ -58,16 +60,15 @@ function division (a, b) {
     return result
 };
 
+//Listeners
+
 function numberListener (origin, number) {
     origin.addEventListener('click', function () {
         if (memory.operator.length == 0) {
             memory.firstNumber.push(number);
             return;
-        } else if (memory.operator == 1) {
-            memory.secondNumber.push(number);
-            return;
         } else {
-            memory.thirdNumber.push(number);
+            memory.secondNumber.push(number);
             return;
         }
     })
@@ -109,7 +110,7 @@ function valueIdentifier (operatorArray) {
 function operatorListener (origin, operator) {
     origin.addEventListener('click', function () {
         if (memory.operator.length < 1) {
-            memory.operator.push(operator);
+            memory.operator += operator;
             return
         } else if (memory.operator.length >= 3) {
             valueIdentifier(memory.operator[0])
@@ -117,3 +118,7 @@ function operatorListener (origin, operator) {
         }
     })
 }
+
+//activate listeners
+NUMBERS.forEach(item => numberListener(item.origin,item.value));
+OPERATORS.forEach(item => operatorListener(item.origin,item.value));

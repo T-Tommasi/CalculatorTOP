@@ -8,16 +8,16 @@ function pushToMemory (numbers) {
     return;
 };
 //Get the various numerical buttons
-const buttonZero = document.querySelector('#button0');
-const buttonOne = document.querySelector('#button1');
-const buttonTwo = document.querySelector('#button2');
-const buttonThree = document.querySelector('#button3');
-const buttonFour = document.querySelector('#button4');
-const buttonFive = document.querySelector('#button5');
-const buttonSix = document.querySelector('#button6');
-const buttonSeven = document.querySelector('#button7');
-const buttonEight = document.querySelector('#button8');
-const buttonNine = document.querySelector('#button9');
+const buttonZero = document.querySelector('#number0');
+const buttonOne = document.querySelector('#number1');
+const buttonTwo = document.querySelector('#number2');
+const buttonThree = document.querySelector('#number3');
+const buttonFour = document.querySelector('#number4');
+const buttonFive = document.querySelector('#number5');
+const buttonSix = document.querySelector('#number6');
+const buttonSeven = document.querySelector('#number7');
+const buttonEight = document.querySelector('#number8');
+const buttonNine = document.querySelector('#number9');
 
 function checkButtons (query) {
     console.log(query)
