@@ -4,7 +4,7 @@ let memory = {
     secondNumber: [],
     operator: '',
 };
-ler result = ''
+let result = ''
 
 //Recall the numbers and operators for further use down the line
 
