@@ -4,7 +4,9 @@ let memory = {
     secondNumber: [],
     operator: '',
 };
-let result = ''
+let result = 0
+
+const SCREEN = document.querySelector('#screen');
 
 //Recall the numbers and operators for further use down the line
 
@@ -31,33 +33,25 @@ const OPERATORS = [
 
 const SPECIALS = [
     {origin: document.querySelector('#dot'), value: '.'},
-    {origin: document.querySelector('#double0'), value: '00'}
+    {origin: document.querySelector('#cancel'), value: 'C'},
 ];
 
 //calculation functions
 
 function sum (a, b) {
-    let result = Number(a) + Number(b);
-    console.log(result);
-    return result
+    return Number(a) + Number(b);
 };
 
 function minus (a, b) {
-    let result = Number(a) - Number(b);
-    console.log(result);
-    return result
+    return Number(a) - Number(b);
 };
 
 function multiply (a, b) {
-    let result = Number(a) * Number(b);
-    console.log(result);
-    return result
+    return Number(a) * Number(b);
 };
 
 function division (a, b) {
-    let result = Number(a) / Number(b);
-    console.log(result);
-    return result
+    return Number(a) / Number(b)
 };
 
 //Listeners
@@ -65,41 +59,50 @@ function division (a, b) {
 function numberListener (origin, number) {
     origin.addEventListener('click', function () {
         if (memory.operator.length == 0) {
-            memory.firstNumber.push(number);
+            memory.firstNumber += number;
             return;
         } else {
-            memory.secondNumber.push(number);
+            memory.secondNumber += number;
             return;
-        }
-    })
+        };
+    });
+    screenUpdate(SCREEN);
 }
 
 function valueIdentifier (operatorArray) {
     switch(operatorArray) {
         case '+':
             if (result != 0) {
-                result += sum(memory.firstNumber,memory.secondNumber);
+                memory.firstNumber = result;
+                memory.secondNumber = '';
+                memory.operator = '';
             } else if (result == 0) {
                 result = sum(memory.firstNumber,memory.secondNumber);
             }
             break;
         case '-':
             if (result != 0) {
-                result -= minus(memory.firstNumber,memory.secondNumber);
+                memory.firstNumber = result;
+                memory.secondNumber = '';
+                memory.operator = '';
             } else {
                 result = minus(memory.firstNumber,memory.secondNumber);
             };
             break
         case '*':
             if (result != 0) {
-                result *= multiply(memory.firstNumber,memory.secondNumber);
+                memory.firstNumber = result;
+                memory.secondNumber = '';
+                memory.operator = '';
             } else {
                 result = multiply(memory.firstNumber,memory.secondNumber);
             };
             break;
         case '/':
             if (result != 0) {
-                result /= division(memory.firstNumber,memory.secondNumber);
+                memory.firstNumber = result;
+                memory.secondNumber = '';
+                memory.operator = '';
             } else {
                 result = division(memory.firstNumber,memory.secondNumber);
             }
@@ -112,13 +115,56 @@ function operatorListener (origin, operator) {
         if (memory.operator.length < 1) {
             memory.operator += operator;
             return
-        } else if (memory.operator.length >= 3) {
-            valueIdentifier(memory.operator[0])
-            return
+        } else if (memory.operator.length == 1) {
+            if (operator = '=') {
+                valueIdentifier(memory.operator);
+                console.log(result);
+                memory.firstNumber = result;
+                result = '';
+                memory.secondNumber = '';
+                memory.operator = '';
+                return
+            } else {
+                valueIdentifier(memory.operator)
+                console.log(result)
+                return
+            }
         }
+        screenUpdate(SCREEN);
     })
-}
+};
+
+function specialListener(origin, operator) {
+    origin.addEventListener('click', function () {
+        if (operator == 'C') {
+            memory.firstNumber = '';
+            memory.secondNumber = '';
+            memory.operator = '';
+            result = '';
+        } else {
+            if (memory.operator == '') {
+                memory.firstNumber += '.';
+            } else if (memory.operator != '') {
+                memory.secondNumber += '.'
+            }
+        };
+        screenUpdate(SCREEN);
+    })
+};
 
 //activate listeners
 NUMBERS.forEach(item => numberListener(item.origin,item.value));
 OPERATORS.forEach(item => operatorListener(item.origin,item.value));
+SPECIALS.forEach(item => specialListener(item.origin,item.value));
+
+//Appending elements to the screenSCREEN.textContent = `${memory.firstNumber} ${memory.operator} ${memory.secondNumber}  = ${result}`
+
+function screenUpdate (screenId) {
+    if (result == 0) {
+        screenId.textContent = `${memory.firstNumber} ${memory.operator} ${memory.secondNumber}`;
+        screenId.appendChild('#screen');
+    } else if (memory.operator == '' || memory.operator == '=') {
+        screenId.textContent = `= ${result}`;
+        screenId.appendChild('#screen');
+    }
+}
