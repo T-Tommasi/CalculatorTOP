@@ -60,13 +60,12 @@ function numberListener (origin, number) {
     origin.addEventListener('click', function () {
         if (memory.operator.length == 0) {
             memory.firstNumber += number;
-            return;
+            screenUpdate(SCREEN);
         } else {
             memory.secondNumber += number;
-            return;
+            screenUpdate(SCREEN);
         };
     });
-    screenUpdate(SCREEN);
 }
 
 function valueIdentifier (operatorArray) {
@@ -114,7 +113,6 @@ function operatorListener (origin, operator) {
     origin.addEventListener('click', function () {
         if (memory.operator.length < 1) {
             memory.operator += operator;
-            return
         } else if (memory.operator.length == 1) {
             if (operator = '=') {
                 valueIdentifier(memory.operator);
@@ -123,14 +121,13 @@ function operatorListener (origin, operator) {
                 result = '';
                 memory.secondNumber = '';
                 memory.operator = '';
-                return
             } else {
                 valueIdentifier(memory.operator)
                 console.log(result)
-                return
             }
-        }
+        };
         screenUpdate(SCREEN);
+        return
     })
 };
 
@@ -157,14 +154,142 @@ NUMBERS.forEach(item => numberListener(item.origin,item.value));
 OPERATORS.forEach(item => operatorListener(item.origin,item.value));
 SPECIALS.forEach(item => specialListener(item.origin,item.value));
 
-//Appending elements to the screenSCREEN.textContent = `${memory.firstNumber} ${memory.operator} ${memory.secondNumber}  = ${result}`
+//Appending elements to the screen
 
 function screenUpdate (screenId) {
-    if (result == 0) {
-        screenId.textContent = `${memory.firstNumber} ${memory.operator} ${memory.secondNumber}`;
-        screenId.appendChild('#screen');
-    } else if (memory.operator == '' || memory.operator == '=') {
-        screenId.textContent = `= ${result}`;
-        screenId.appendChild('#screen');
-    }
+    screenId.textContent = `${memory.firstNumber} ${memory.operator} ${memory.secondNumber}`
 }
+
+//Keyboard functionality
+
+function addKeyboardNumber (number) {
+    if (memory.operator.length == 0) {
+        memory.firstNumber += number;
+        screenUpdate(SCREEN);
+    } else {
+        memory.secondNumber += number;
+        screenUpdate(SCREEN);
+    };
+}
+
+function addKeyboardOperator (operator) {
+    if (memory.operator.length < 1) {
+        memory.operator += operator;
+    } else if (memory.operator.length == 1) {
+        if (operator = '=') {
+            valueIdentifier(memory.operator);
+            console.log(result);
+            memory.firstNumber = result;
+            result = '';
+            memory.secondNumber = '';
+            memory.operator = '';
+        } else {
+            valueIdentifier(memory.operator)
+            console.log(result)
+        }
+    };
+    screenUpdate(SCREEN);
+    return
+}
+
+function specialKeyboardListener (element) {
+    if (operator == 'C') {
+        memory.firstNumber = '';
+        memory.secondNumber = '';
+        memory.operator = '';
+        result = '';
+    } else {
+        if (memory.operator == '') {
+            memory.firstNumber += '.';
+        } else if (memory.operator != '') {
+            memory.secondNumber += '.'
+        }
+    };
+    screenUpdate(SCREEN);
+}
+
+function keyboardListener(element) {
+    element.addEventListener('keydown', function (event) {
+        const key = event.key;
+        switch(key) {
+            case '0':
+                addKeyboardNumber(0);
+                break;
+            case '1':
+                addKeyboardNumber(1);
+                break;
+            case '2':
+                addKeyboardNumber(2);
+                break;
+            case '3':
+                addKeyboardNumber(3);
+                break;
+            case '4':
+                addKeyboardNumber(4);
+                break;
+            case '5':
+                addKeyboardNumber(5);
+                break;
+            case '6':
+                addKeyboardNumber(6);
+                break;
+            case '7':
+                addKeyboardNumber(7);
+                break;
+            case '8':
+                addKeyboardNumber(8);
+                break;
+            case '9':
+                addKeyboardNumber(9);
+                break;
+            case '+':
+                addKeyboardOperator('+');
+                break;
+            case '-':
+                addKeyboardOperator('-');
+                break;
+            case '*':
+                addKeyboardOperator('*');
+                break;
+            case '/':
+                addKeyboardOperator('/');
+                break;
+            case '=':
+                addKeyboardOperator('=');
+                break;
+            case 'enter':
+                addKeyboardOperator('=');
+                break;
+            case 'delete':
+                memory.firstNumber = '';
+                memory.secondNumber = '';
+                memory.operator = '';
+                screenUpdate(SCREEN);
+                break;
+            case 'C':
+                memory.firstNumber = '';
+                memory.secondNumber = '';
+                memory.operator = '';
+                screenUpdate(SCREEN);
+                break; 
+            case ',':
+                if (memory.operator == '') {
+                    memory.firstNumber += '.';
+                } else if (memory.operator != '') {
+                    memory.secondNumber += '.'
+                }
+                screenUpdate(SCREEN);
+                break;
+            case '.':
+                if (memory.operator == '') {
+                    memory.firstNumber += '.';
+                } else if (memory.operator != '') {
+                    memory.secondNumber += '.'
+                };
+                screenUpdate(SCREEN)
+                break;
+        }}
+        )
+    };
+
+keyboardListener(document);
